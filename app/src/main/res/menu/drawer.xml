@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group
+        android:id="@+id/group_1">
+        <item
+            android:id="@+id/drawer_menu_account"
+            android:checked="false"
+            android:title="@string/menu_account"
+            android:icon="@drawable/ic_account_grey600_24dp" />
+
+        <item
+            android:id="@+id/drawer_menu_main"
+            android:checked="false"
+            android:title="@string/menu_main"
+            android:icon="@drawable/ic_pin_grey600_24dp" />
+    </group>
+
+    <group
+        android:id="@+id/group_2">
+        <item
+            android:id="@+id/drawer_menu_settings"
+            android:checked="false"
+            android:title="@string/menu_settings"
+            android:icon="@drawable/ic_settings_grey600_24dp" />
+
+        <item
+            android:id="@+id/drawer_menu_help"
+            android:checked="false"
+            android:title="@string/menu_help"
+            android:icon="@drawable/ic_help_circle_grey600_24dp" />
+    </group>
+
+</menu>

@@ -1,0 +1,58 @@
+<resources>
+
+    <!-- Global -->
+    <string name="app_name">Android Starter</string>
+    <string name="app_check_network">Check your network</string>
+    <string name="app_leave_application_txt">Exit ?</string>
+    <string name="app_leave_application_yes">Yes</string>
+    <string name="app_leave_application_no">No</string>
+    <string name="app_input_required">This field is required</string>
+    <string name="app_input_email_invalid">Invalid email</string>
+    <string name="app_input_password_invalid">Invalid password(6 characters minimum)</string>
+    <string name="app_checkbox_terms_invalid">You must accept terms</string>
+
+    <!-- LoginActivity -->
+    <string name="title_activity_login">Login</string>
+    <string name="login_txt_hello">Hello,</string>
+    <string name="login_input_hint_email">Email</string>
+    <string name="login_input_hint_password">Password</string>
+    <string name="login_btn_login">Login</string>
+    <string name="login_btn_login_later">Later</string>
+    <string name="login_btn_login_google">Login</string>
+    <string name="login_txt_forgot_password">Forgot password ?</string>
+    <string name="login_txt_create_account">Create account</string>
+
+    <!-- RegisterActivity -->
+    <string name="title_activity_register">Register</string>
+    <string name="register_input_lastname">Lastname</string>
+    <string name="register_input_firstname">Firstname</string>
+    <string name="register_input_email">Email</string>
+    <string name="register_input_password">Password</string>
+    <string name="register_checkbox_terms">I agree with terms</string>
+    <string name="register_btn_submit">submit</string>
+    <string name="register_txt_already_signup">I have an account</string>
+    <string name="register_txt_terms">Terms</string>
+
+    <!-- Navdrawer -->
+    <string name="openDrawer">Navigation View</string>
+    <string name="closeDrawer">Navigation View Closed</string>
+
+    <!-- Menu drawer -->
+    <string name="menu_header_username">Anonymous user</string>
+    <string name="menu_header_email">You are not register</string>
+    <string name="menu_account">Account</string>
+    <string name="menu_main">Home</string>
+    <string name="menu_settings">Settings</string>
+    <string name="menu_help">Help</string>
+
+    <!-- SnackBar -->
+    <string name="snackbar_not_connected">You must be connected</string>
+    <string name="snackbar_ok">ok</string>
+
+    <!-- AccountFragment -->
+    <string name="logout">Logout</string>
+    <string name="account_username"></string>
+    <string name="account_email"></string>
+    <string name="account_phone"></string>
+
+</resources>

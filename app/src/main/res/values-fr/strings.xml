@@ -1,0 +1,58 @@
+<resources>
+
+    <!-- Global -->
+    <string name="app_name">Android Starter</string>
+    <string name="app_check_network">Vérifiez votre connexion internet</string>
+    <string name="app_leave_application_txt">Quitter l\'application ?</string>
+    <string name="app_leave_application_yes">Oui</string>
+    <string name="app_leave_application_no">Non</string>
+    <string name="app_input_required">Ce champ est obligatoire</string>
+    <string name="app_input_email_invalid">Email invalide</string>
+    <string name="app_input_password_invalid">Mot de passe invalide (6 caractères minimum)</string>
+    <string name="app_checkbox_terms_invalid">Vous devez accepter les conditions</string>
+
+    <!-- LoginActivity -->
+    <string name="title_activity_login">Connexion</string>
+    <string name="login_txt_hello">Bonjour,</string>
+    <string name="login_input_hint_email">Email</string>
+    <string name="login_input_hint_password">Mot de passe</string>
+    <string name="login_btn_login">Connexion</string>
+    <string name="login_btn_login_later">Plus tard</string>
+    <string name="login_btn_login_google">Connexion</string>
+    <string name="login_txt_forgot_password">Mot de passe oublié ?</string>
+    <string name="login_txt_create_account">Créer un compte</string>
+
+    <!-- RegisterActivity -->
+    <string name="title_activity_register">Inscription</string>
+    <string name="register_input_lastname">Nom</string>
+    <string name="register_input_firstname">Prénom</string>
+    <string name="register_input_email">Email</string>
+    <string name="register_input_password">Mot de passe</string>
+    <string name="register_checkbox_terms">J\'accepte les conditions générales d\'utilisations</string>
+    <string name="register_btn_submit">valider</string>
+    <string name="register_txt_already_signup">J\'ai déjà un compte</string>
+    <string name="register_txt_terms">Conditions générales</string>
+
+    <!-- Navdrawer -->
+    <string name="openDrawer">Navigation View</string>
+    <string name="closeDrawer">Navigation View Closed</string>
+
+    <!-- Menu drawer -->
+    <string name="menu_header_username">Utilisateur anonyme</string>
+    <string name="menu_header_email">Vous n\'êtes pas identifié</string>
+    <string name="menu_account">Mon compte</string>
+    <string name="menu_main">Accueil</string>
+    <string name="menu_settings">Paramètres</string>
+    <string name="menu_help">Aide et commentaires</string>
+
+    <!-- SnackBar -->
+    <string name="snackbar_not_connected">Vous devez être connecté</string>
+    <string name="snackbar_ok">ok</string>
+
+    <!-- AccountFragment -->
+    <string name="logout">Déconnexion</string>
+    <string name="account_username"></string>
+    <string name="account_email"></string>
+    <string name="account_phone"></string>
+
+</resources>

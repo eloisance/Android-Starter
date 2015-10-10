@@ -1,0 +1,167 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context="fr.emmanuel.loisance.androidstarter.activity.RegisterActivity"
+    android:background="@color/ColorPrimaryDark">
+
+    <TextView
+        android:id="@+id/register_txt_signup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/title_activity_register"
+        android:textColor="@color/White"
+        android:textSize="40sp"
+        android:layout_marginTop="30dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <LinearLayout
+        android:id="@+id/linearLayoutForm"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:descendantFocusability="beforeDescendants"
+        android:focusableInTouchMode="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/register_input_lastname"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"
+                android:layout_weight="1"
+                android:ems="10"
+                android:hint="@string/register_input_lastname"
+                android:textColorHint="@color/White"
+                android:textColor="@color/White"
+                android:theme="@style/EditTextLoginStyle"
+                android:layout_marginEnd="10dp"
+                android:layout_marginRight="10dp" />
+
+            <EditText
+                android:id="@+id/register_input_firstname"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"
+                android:layout_weight="1"
+                android:ems="10"
+                android:hint="@string/register_input_firstname"
+                android:textColorHint="@color/White"
+                android:textColor="@color/White"
+                android:theme="@style/EditTextLoginStyle"
+                android:layout_marginStart="10dp"
+                android:layout_marginLeft="10dp" />
+
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/register_input_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textEmailAddress"
+            android:ems="10"
+            android:hint="@string/register_input_email"
+            android:textColorHint="@color/White"
+            android:textColor="@color/White"
+            android:theme="@style/EditTextLoginStyle"
+            android:layout_marginTop="20dp" />
+
+        <EditText
+            android:id="@+id/register_input_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            android:ems="10"
+            android:hint="@string/register_input_password"
+            android:textColorHint="@color/White"
+            android:textColor="@color/White"
+            android:theme="@style/EditTextLoginStyle"
+            android:layout_marginTop="20dp"/>
+
+        <CheckBox
+            android:id="@+id/register_checkbox_terms"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/register_checkbox_terms"
+            android:textColor="#fff"
+            android:layout_marginTop="20dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:paddingRight="4dp"
+            android:paddingLeft="4dp"
+            android:paddingStart="4dp"
+            android:paddingEnd="4dp">
+
+            <Button
+                android:id="@+id/register_btn_send"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/register_btn_submit"
+                android:textColor="@color/White"
+                android:background="@drawable/button_login" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayoutLoader"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/linearLayoutForm"
+        android:gravity="center">
+
+        <ProgressBar
+            android:id="@+id/register_loader"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:padding="5dp" />
+
+    </LinearLayout>
+
+
+    <TextView
+        android:id="@+id/register_txt_already_signup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingRight="4dp"
+        android:paddingLeft="4dp"
+        android:text="@string/register_txt_already_signup"
+        android:textColor="@color/White"
+        android:textSize="16sp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:id="@+id/register_txt_terms"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingRight="4dp"
+        android:paddingLeft="4dp"
+        android:text="@string/register_txt_terms"
+        android:textColor="@color/White"
+        android:textSize="16sp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"/>
+
+
+</RelativeLayout>
