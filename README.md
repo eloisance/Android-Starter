@@ -10,7 +10,7 @@ Base to start your Android project if you need these features :
 * AccountFragment
 * Navigation Drawer 
 
-[AndroidStarter](AndroidStarter.gif?raw=true)
+![AndroidStarter](AndroidStarter.gif?raw=true)
 
 ## Setup 
 
