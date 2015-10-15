@@ -4,8 +4,9 @@ Base to start your Android project if you need these features :
 
 * SplashScreen
 * Login and Register form 
-* Google authentification 
+* Google authentication
 * Anonymous access
+* English and French language
 * Blank MainFragment with FAB
 * AccountFragment
 * Navigation Drawer 
