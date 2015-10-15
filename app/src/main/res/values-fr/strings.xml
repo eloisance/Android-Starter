@@ -2,6 +2,7 @@
 
     <!-- Global -->
     <string name="app_name">Android Starter</string>
+    <string name="splash_txt_version_name">v%1$s</string>
     <string name="app_check_network">Vérifiez votre connexion internet</string>
     <string name="app_leave_application_txt">Quitter l\'application ?</string>
     <string name="app_leave_application_yes">Oui</string>
