@@ -13,6 +13,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -53,10 +54,6 @@ public class MainActivity extends AppCompatActivity {
 
         final View coordinatorLayoutView = findViewById(R.id.coordinator_layout);
 
-        username = (TextView) findViewById(R.id.username);
-        email = (TextView) findViewById(R.id.email);
-        profileImage = (CircleImageView) findViewById(R.id.profile_image);
-
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(mToolbar);
 
@@ -72,7 +69,14 @@ public class MainActivity extends AppCompatActivity {
         mDrawerLayout.setDrawerListener(mActionBarDrawerToggle);
         mActionBarDrawerToggle.syncState();
 
+
         mNavigationView = (NavigationView) findViewById(R.id.navigation_view);
+        View header = LayoutInflater.from(this).inflate(R.layout.header, null);
+
+        username = (TextView) header.findViewById(R.id.username);
+        email = (TextView) header.findViewById(R.id.email);
+        profileImage = (CircleImageView) header.findViewById(R.id.profile_image);
+
         mNavigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(MenuItem menuItem) {
