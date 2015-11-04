@@ -11,6 +11,7 @@
     <string name="app_input_email_invalid">Invalid email</string>
     <string name="app_input_password_invalid">Invalid password(6 characters minimum)</string>
     <string name="app_checkbox_terms_invalid">You must accept terms</string>
+    <string name="app_menu_about">about</string>
 
     <!-- LoginActivity -->
     <string name="title_activity_login">Login</string>
@@ -48,12 +49,14 @@
 
     <!-- SnackBar -->
     <string name="snackbar_not_connected">You must be connected</string>
-    <string name="snackbar_ok">ok</string>
+    <string name="snackbar_ok">OK</string>
 
     <!-- AccountFragment -->
-    <string name="logout">Logout</string>
-    <string name="account_username"></string>
-    <string name="account_email"></string>
-    <string name="account_phone"></string>
+    <string name="account_menu_save">save</string>
+    <string name="account_input_lastname_hint">lastname</string>
+    <string name="account_input_firstname_hint">firstname</string>
+    <string name="account_input_email_hint">email address</string>
+    <string name="account_input_phone_hint">phone number</string>
+    <string name="logout">logout</string>
 
 </resources>

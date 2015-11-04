@@ -1,5 +1,7 @@
 package fr.emmanuel.loisance.androidstarter.fragment;
 
+import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -10,8 +12,9 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
-import android.widget.TextView;
+import android.widget.EditText;
 
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.plus.Plus;
@@ -24,16 +27,9 @@ import fr.emmanuel.loisance.androidstarter.global.GlobalState;
 public class AccountFragment extends Fragment implements View.OnClickListener {
 
     private static final String TAG = "AccountFragment";
-
     private GlobalState gs;
-    private User user;
-
     private GoogleApiClient mGoogleApiClient;
-
-    private TextView txtAccountName;
-    private TextView txtAccountEmail;
-    private TextView txtAccountPhone;
-    private Button mSignOutButton;
+    private User user;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -53,14 +49,17 @@ public class AccountFragment extends Fragment implements View.OnClickListener {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.account_fragment, container, false);
 
-        txtAccountName = (TextView) rootView.findViewById(R.id.txtName);
-        txtAccountEmail = (TextView) rootView.findViewById(R.id.txtEmail);
-        txtAccountPhone = (TextView) rootView.findViewById(R.id.txtPhone);
+        EditText inputAccountLastname = (EditText) rootView.findViewById(R.id.account_input_lastname);
+        EditText inputAccountFirstname = (EditText) rootView.findViewById(R.id.account_input_firstname);
+        EditText inputAccountEmail = (EditText) rootView.findViewById(R.id.account_input_email);
+        EditText inputAccountPhone = (EditText) rootView.findViewById(R.id.account_input_phone);
+        Button mSignOutButton = (Button) rootView.findViewById(R.id.account_button_logout);
 
-        txtAccountName.setText(user.getDisplayName());
-        txtAccountEmail.setText(user.getEmail());
+        inputAccountLastname.setText(user.getLastname());
+        inputAccountFirstname.setText(user.getFirstname());
+        inputAccountEmail.setText(user.getEmail());
+        inputAccountPhone.setText(user.getPhone());
 
-        mSignOutButton = (Button) rootView.findViewById(R.id.sign_out_button);
         mSignOutButton.setOnClickListener(this);
 
         return rootView;
@@ -75,6 +74,10 @@ public class AccountFragment extends Fragment implements View.OnClickListener {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
+
+        if(id == R.id.menu_account_save) {
+            submitData(getActivity());
+        }
 
         return super.onOptionsItemSelected(item);
     }
@@ -95,12 +98,29 @@ public class AccountFragment extends Fragment implements View.OnClickListener {
 
     @Override
     public void onClick(View view) {
-        if(view.getId() == R.id.sign_out_button) {
+        if(view.getId() == R.id.account_button_logout) {
             Log.d(TAG, "onClick sign out button");
             onSignOutClicked();
         }
     }
 
+    /**
+     * Check data in form are ok
+     * and send them to the server with REST API
+     */
+    private void submitData(Activity activity) {
+        // close keyboard
+        View view = activity.getCurrentFocus();
+        if (view != null) {
+            InputMethodManager imm = (InputMethodManager) activity.getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+        }
+        // TODO: 04/11/2015 Check data and send them
+    }
+
+    /**
+     * Logout user from default or from google
+     */
     private void onSignOutClicked() {
         if(user.getProvider().equals("google") && mGoogleApiClient.isConnected()) {
             mGoogleApiClient.clearDefaultAccountAndReconnect();
@@ -109,8 +129,7 @@ public class AccountFragment extends Fragment implements View.OnClickListener {
             Intent intent = new Intent(getActivity(), LoginActivity.class);
             startActivity(intent);
             getActivity().finish();
-        }
-        if(user.getProvider().equals("default")) {
+        } else if(user.getProvider().equals("default")) {
             gs.setIsConnected(false);
             Intent intent = new Intent(getActivity(), LoginActivity.class);
             startActivity(intent);

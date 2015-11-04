@@ -11,6 +11,7 @@
     <string name="app_input_email_invalid">Email invalide</string>
     <string name="app_input_password_invalid">Mot de passe invalide (6 caractères minimum)</string>
     <string name="app_checkbox_terms_invalid">Vous devez accepter les conditions</string>
+    <string name="app_menu_about">a propos</string>
 
     <!-- LoginActivity -->
     <string name="title_activity_login">Connexion</string>
@@ -48,12 +49,14 @@
 
     <!-- SnackBar -->
     <string name="snackbar_not_connected">Vous devez être connecté</string>
-    <string name="snackbar_ok">ok</string>
+    <string name="snackbar_ok">OK</string>
 
     <!-- AccountFragment -->
-    <string name="logout">Déconnexion</string>
-    <string name="account_username"></string>
-    <string name="account_email"></string>
-    <string name="account_phone"></string>
+    <string name="account_menu_save">sauvegarder</string>
+    <string name="account_input_lastname_hint">nom</string>
+    <string name="account_input_firstname_hint">prénom</string>
+    <string name="account_input_email_hint">adresse email</string>
+    <string name="account_input_phone_hint">numéro de téléphone</string>
+    <string name="logout">déconnexion</string>
 
 </resources>
