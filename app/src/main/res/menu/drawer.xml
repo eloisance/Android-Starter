@@ -14,7 +14,7 @@
             android:id="@+id/drawer_menu_main"
             android:checked="false"
             android:title="@string/menu_main"
-            android:icon="@drawable/ic_pin_grey600_24dp" />
+            android:icon="@drawable/ic_home_24dp" />
     </group>
 
     <group
@@ -23,13 +23,13 @@
             android:id="@+id/drawer_menu_settings"
             android:checked="false"
             android:title="@string/menu_settings"
-            android:icon="@drawable/ic_settings_grey600_24dp" />
+            android:icon="@drawable/ic_settings_24dp" />
 
         <item
             android:id="@+id/drawer_menu_help"
             android:checked="false"
             android:title="@string/menu_help"
-            android:icon="@drawable/ic_help_circle_grey600_24dp" />
+            android:icon="@drawable/ic_help_24dp" />
     </group>
 
 </menu>
