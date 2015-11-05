@@ -13,7 +13,6 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -39,10 +38,6 @@ public class MainActivity extends AppCompatActivity {
     private ActionBarDrawerToggle mActionBarDrawerToggle;
     private MenuItem mPreviousItem;
     private FloatingActionButton mFloatingActionButton;
-
-    private TextView username;
-    private TextView email;
-    private CircleImageView profileImage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,12 +66,10 @@ public class MainActivity extends AppCompatActivity {
 
 
         mNavigationView = (NavigationView) findViewById(R.id.navigation_view);
-        View header = LayoutInflater.from(this).inflate(R.layout.header, null);
-
-        username = (TextView) header.findViewById(R.id.username);
-        email = (TextView) header.findViewById(R.id.email);
-        profileImage = (CircleImageView) header.findViewById(R.id.profile_image);
-
+        View header = mNavigationView.inflateHeaderView(R.layout.header);
+        TextView username = (TextView) header.findViewById(R.id.username);
+        TextView email = (TextView) header.findViewById(R.id.email);
+        CircleImageView profileImage = (CircleImageView) header.findViewById(R.id.profile_image);
         mNavigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(MenuItem menuItem) {
