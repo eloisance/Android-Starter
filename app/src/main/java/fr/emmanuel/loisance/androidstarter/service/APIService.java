@@ -6,6 +6,7 @@ import retrofit.http.Field;
 import retrofit.http.FormUrlEncoded;
 import retrofit.http.GET;
 import retrofit.http.POST;
+import retrofit.http.PUT;
 import retrofit.http.Path;
 
 public interface APIService {
@@ -24,4 +25,7 @@ public interface APIService {
     @POST("users/create/default")
     Call<User> createUserWithDefault(@Field("firstname") String firstname, @Field("lastname") String lastname, @Field("email") String email, @Field("password") String password);
 
+    @FormUrlEncoded
+    @PUT("users/{id}")
+    Call<User> updateUser(@Path("id") int id, @Field("firstname") String firstname, @Field("lastname") String lastname, @Field("email") String email, @Field("phone") String phone);
 }

@@ -64,7 +64,6 @@ public class MainActivity extends AppCompatActivity {
         mDrawerLayout.setDrawerListener(mActionBarDrawerToggle);
         mActionBarDrawerToggle.syncState();
 
-
         mNavigationView = (NavigationView) findViewById(R.id.navigation_view);
         View header = mNavigationView.inflateHeaderView(R.layout.header);
         TextView username = (TextView) header.findViewById(R.id.username);

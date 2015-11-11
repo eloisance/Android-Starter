@@ -57,6 +57,9 @@
     <string name="account_input_firstname_hint">firstname</string>
     <string name="account_input_email_hint">email address</string>
     <string name="account_input_phone_hint">phone number</string>
-    <string name="logout">logout</string>
+    <string name="account_message_ok">account updated</string>
+    <string name="account_message_error">error %1$s, please contact us</string>
+    <string name="account_failure_error">connection failed, please contact us</string>
+    <string name="account_btn_logout">logout</string>
 
 </resources>

@@ -1,63 +1,100 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:descendantFocusability="beforeDescendants"
     android:focusableInTouchMode="true">
 
-    <LinearLayout
+    <ProgressBar
+        android:id="@+id/progressBarAccount"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:visibility="invisible"
+        android:indeterminate="true"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="-7dp"/>
+
+    <LinearLayout
+        android:id="@+id/linearLayoutAccount"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/progressBarAccount"
         android:padding="16dp"
         android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:baselineAligned="false"
             android:orientation="horizontal">
 
-            <EditText
-                android:id="@+id/account_input_lastname"
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/account_input_lastname_layout"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:textSize="18sp"
-                android:layout_weight="1"
-                android:inputType="textPersonName"
-                android:hint="@string/account_input_lastname_hint"
-                android:textColor="@color/ColorTextPrimary" />
+                android:layout_weight="1">
+                <EditText
+                    android:id="@+id/account_input_lastname"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="18sp"
+                    android:inputType="textPersonName"
+                    android:hint="@string/account_input_lastname_hint"
+                    android:textColor="@color/ColorTextPrimary"
+                    android:ems="10"/>
+            </android.support.design.widget.TextInputLayout>
 
-            <EditText
-                android:id="@+id/account_input_firstname"
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/account_input_firstname_layout"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:textSize="18sp"
-                android:layout_weight="1"
-                android:inputType="textPersonName"
-                android:hint="@string/account_input_firstname_hint"
-                android:textColor="@color/ColorTextPrimary" />
+                android:layout_weight="1">
+                <EditText
+                    android:id="@+id/account_input_firstname"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="18sp"
+                    android:inputType="textPersonName"
+                    android:hint="@string/account_input_firstname_hint"
+                    android:textColor="@color/ColorTextPrimary"
+                    android:ems="10"/>
+            </android.support.design.widget.TextInputLayout>
 
         </LinearLayout>
 
-        <EditText
-            android:id="@+id/account_input_email"
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/account_input_email_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="18sp"
-            android:inputType="textEmailAddress"
-            android:hint="@string/account_input_email_hint"
-            android:textColor="@color/ColorTextPrimary"
-            android:layout_marginTop="15dp"/>
+            android:layout_marginTop="15dp">
+            <EditText
+                android:id="@+id/account_input_email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:inputType="textEmailAddress"
+                android:hint="@string/account_input_email_hint"
+                android:textColor="@color/ColorTextPrimary"
+                android:ems="10"/>
+        </android.support.design.widget.TextInputLayout>
 
-        <EditText
-            android:id="@+id/account_input_phone"
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/account_input_phone_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="18sp"
-            android:inputType="phone"
-            android:hint="@string/account_input_phone_hint"
-            android:textColor="@color/ColorTextPrimary"
-            android:layout_marginTop="15dp"/>
+            android:layout_marginTop="15dp">
+            <EditText
+                android:id="@+id/account_input_phone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:inputType="phone"
+                android:hint="@string/account_input_phone_hint"
+                android:textColor="@color/ColorTextPrimary"
+                android:maxLength="10"
+                android:ems="10"/>
+        </android.support.design.widget.TextInputLayout>
 
     </LinearLayout>
 
@@ -66,10 +103,10 @@
         android:id="@+id/account_button_logout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/logout"
+        android:text="@string/account_btn_logout"
         android:background="@color/ColorAccent"
         android:textColor="@color/White"
-        android:layout_gravity="center_horizontal|bottom"/>
+        android:layout_alignParentBottom="true"/>
 
 
-</FrameLayout>
+</RelativeLayout>
