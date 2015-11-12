@@ -23,4 +23,5 @@ Base to start your Android project if you need these features :
 ## TODO 
 
 * Add profile image
+* Delete account
 
