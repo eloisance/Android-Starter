@@ -360,6 +360,7 @@ public class LoginActivity extends Activity implements View.OnClickListener, Goo
 
             @Override
             public void onFailure(Throwable t) {
+                Log.d(TAG, "connection google fail: " + t.getMessage() + t.getCause().getMessage());
                 Toast.makeText(getApplicationContext(), "Connection failed", Toast.LENGTH_LONG).show();
                 mLoader.setVisibility(View.INVISIBLE);
                 if(mGoogleApiClient.isConnected()) {
