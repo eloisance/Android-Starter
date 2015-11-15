@@ -8,8 +8,8 @@
         android:icon="@drawable/ic_done_24dp" />
 
     <item
-        android:id="@+id/menu_account_about"
-        android:title="@string/app_menu_about"
+        android:id="@+id/menu_account_delete"
+        android:title="@string/account_menu_delete"
         app:showAsAction="never"
         android:orderInCategory="2" />
 </menu>

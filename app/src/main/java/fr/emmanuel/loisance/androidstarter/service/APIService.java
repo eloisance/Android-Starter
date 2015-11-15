@@ -2,6 +2,7 @@ package fr.emmanuel.loisance.androidstarter.service;
 
 import fr.emmanuel.loisance.androidstarter.classe.User;
 import retrofit.Call;
+import retrofit.http.DELETE;
 import retrofit.http.Field;
 import retrofit.http.FormUrlEncoded;
 import retrofit.http.GET;
@@ -28,4 +29,7 @@ public interface APIService {
     @FormUrlEncoded
     @PUT("users/{id}")
     Call<User> updateUser(@Path("id") int id, @Field("firstname") String firstname, @Field("lastname") String lastname, @Field("email") String email, @Field("phone") String phone);
+
+    @DELETE("users/{id}")
+    Call<User> deleteUser(@Path("id") int id);
 }

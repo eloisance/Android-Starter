@@ -11,7 +11,6 @@
     <string name="app_input_email_invalid">Invalid email</string>
     <string name="app_input_password_invalid">Invalid password(6 characters minimum)</string>
     <string name="app_checkbox_terms_invalid">You must accept terms</string>
-    <string name="app_menu_about">about</string>
 
     <!-- LoginActivity -->
     <string name="title_activity_login">Login</string>
@@ -57,9 +56,15 @@
     <string name="account_input_firstname_hint">firstname</string>
     <string name="account_input_email_hint">email address</string>
     <string name="account_input_phone_hint">phone number</string>
-    <string name="account_message_ok">account updated</string>
+    <string name="account_message_update_ok">account updated</string>
+    <string name="account_message_delete_ok">account deleted</string>
     <string name="account_message_error">error %1$s, please contact us</string>
-    <string name="account_failure_error">connection failed, please contact us</string>
+    <string name="account_message_failure">connection failed, please contact us</string>
     <string name="account_btn_logout">logout</string>
+    <string name="account_menu_delete">delete my account</string>
+    <string name="account_dialog_title">Delete account</string>
+    <string name="account_dialog_message">Do you really wish delete your account ?</string>
+    <string name="account_dialog_positive">yes</string>
+    <string name="account_dialog_negative">no</string>
 
 </resources>

@@ -2,10 +2,12 @@ package fr.emmanuel.loisance.androidstarter.fragment;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -103,7 +105,7 @@ public class AccountFragment extends Fragment implements View.OnClickListener {
                             case 200:
                                 Log.d(TAG, "User updated successfully");
                                 Log.d(TAG, "New User: " + response.body().toString());
-                                Toast.makeText(getContext(), getResources().getString(R.string.account_message_ok), Toast.LENGTH_LONG).show();
+                                Toast.makeText(getContext(), getResources().getString(R.string.account_message_update_ok), Toast.LENGTH_LONG).show();
                                 gs.setUser(response.body());
                                 break;
                             case 400:
@@ -121,7 +123,7 @@ public class AccountFragment extends Fragment implements View.OnClickListener {
                     @Override
                     public void onFailure(Throwable t) {
                         Log.d(TAG, "connection fail: " + t.getMessage() + t.getCause().getMessage());
-                        Toast.makeText(getContext(), getResources().getString(R.string.account_failure_error), Toast.LENGTH_LONG).show();
+                        Toast.makeText(getContext(), getResources().getString(R.string.account_message_failure), Toast.LENGTH_LONG).show();
                         mProgressBar.setVisibility(View.INVISIBLE);
                     }
                 });
@@ -183,6 +185,8 @@ public class AccountFragment extends Fragment implements View.OnClickListener {
 
         if(id == R.id.menu_account_save) {
             submitData(getActivity());
+        } else if(id == R.id.menu_account_delete) {
+            dialogDeleteAccount();
         }
 
         return super.onOptionsItemSelected(item);
@@ -205,7 +209,6 @@ public class AccountFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onClick(View view) {
         if(view.getId() == R.id.account_button_logout) {
-            Log.d(TAG, "onClick sign out button");
             onSignOutClicked();
         }
     }
@@ -228,6 +231,78 @@ public class AccountFragment extends Fragment implements View.OnClickListener {
         }
         // check input's
         mValidator.validate();
+    }
+
+    /**
+     * Display dialog to confirm delete account action
+     */
+    private void dialogDeleteAccount() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        builder.setTitle(getResources().getString(R.string.account_dialog_title));
+        builder.setMessage(getResources().getString(R.string.account_dialog_message));
+        builder.setPositiveButton(getResources().getString(R.string.account_dialog_positive), new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                deleteAccount();
+            }
+        });
+        builder.setNegativeButton(getResources().getString(R.string.account_dialog_negative), new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+        builder.show();
+    }
+
+    /**
+     * Call API to delete account
+     */
+    private void deleteAccount() {
+        if (!gs.isNetworkAvailable(getActivity())) return;
+        mProgressBar.setVisibility(View.VISIBLE);
+
+        Gson gson = new GsonBuilder()
+                .setDateFormat("yyyy-MM-dd")
+                .create();
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(Constants.URL_API)
+                .addConverterFactory(GsonConverterFactory.create(gson))
+                .build();
+
+        APIService api = retrofit.create(APIService.class);
+        Call<User> call = api.deleteUser(user.getId());
+
+        call.enqueue(new Callback<User>() {
+            @Override
+            public void onResponse(Response<User> response, Retrofit retrofit) {
+                switch (response.code()) {
+                    case 200:
+                        Log.d(TAG, "User deleted successfully");
+                        Toast.makeText(getContext(), getResources().getString(R.string.account_message_delete_ok), Toast.LENGTH_LONG).show();
+                        onSignOutClicked();
+                        break;
+                    case 400:
+                        Log.d(TAG, "User can't be delete");
+                        Toast.makeText(getContext(), getResources().getString(R.string.account_message_error, 400), Toast.LENGTH_LONG).show();
+                        break;
+                    case 404:
+                        Log.d(TAG, "User to delete Not found");
+                        Toast.makeText(getContext(), getResources().getString(R.string.account_message_error, 404), Toast.LENGTH_LONG).show();
+                        break;
+                }
+                mProgressBar.setVisibility(View.INVISIBLE);
+            }
+
+            @Override
+            public void onFailure(Throwable t) {
+                Log.d(TAG, "connection fail: " + t.getMessage() + t.getCause().getMessage());
+                Toast.makeText(getContext(), getResources().getString(R.string.account_message_failure), Toast.LENGTH_LONG).show();
+                mProgressBar.setVisibility(View.INVISIBLE);
+            }
+        });
+
     }
 
     /**

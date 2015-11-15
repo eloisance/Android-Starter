@@ -11,7 +11,6 @@
     <string name="app_input_email_invalid">Email invalide</string>
     <string name="app_input_password_invalid">Mot de passe invalide (6 caractères minimum)</string>
     <string name="app_checkbox_terms_invalid">Vous devez accepter les conditions</string>
-    <string name="app_menu_about">a propos</string>
 
     <!-- LoginActivity -->
     <string name="title_activity_login">Connexion</string>
@@ -57,9 +56,15 @@
     <string name="account_input_firstname_hint">prénom</string>
     <string name="account_input_email_hint">adresse email</string>
     <string name="account_input_phone_hint">numéro de téléphone</string>
-    <string name="account_message_ok">compte mis à jour</string>
+    <string name="account_message_update_ok">compte mis à jour</string>
+    <string name="account_message_delete_ok">compte supprimé</string>
     <string name="account_message_error">erreur %1$s, contactez-nous</string>
-    <string name="account_failure_error">connexion échouée, contactez-nous</string>
+    <string name="account_message_failure">connexion échouée, contactez-nous</string>
     <string name="account_btn_logout">déconnexion</string>
+    <string name="account_menu_delete">supprimer mon compte</string>
+    <string name="account_dialog_title">Suppression de compte</string>
+    <string name="account_dialog_message">Souhaitez-vous vraiment supprimer votre compte ?</string>
+    <string name="account_dialog_positive">oui</string>
+    <string name="account_dialog_negative">non</string>
 
 </resources>
