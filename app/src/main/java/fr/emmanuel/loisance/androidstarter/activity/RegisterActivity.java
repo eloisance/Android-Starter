@@ -31,6 +31,7 @@ import fr.emmanuel.loisance.androidstarter.classe.User;
 import fr.emmanuel.loisance.androidstarter.global.Constants;
 import fr.emmanuel.loisance.androidstarter.global.GlobalState;
 import fr.emmanuel.loisance.androidstarter.service.APIService;
+import fr.emmanuel.loisance.androidstarter.util.Security;
 import retrofit.Call;
 import retrofit.Callback;
 import retrofit.GsonConverterFactory;
@@ -123,7 +124,7 @@ public class RegisterActivity extends Activity {
                         .build();
 
                 APIService api = retrofit.create(APIService.class);
-                Call<User> call = api.createUserWithDefault(inputFirstname.getText().toString(), inputLastname.getText().toString(), inputEmail.getText().toString(), inputPassword.getText().toString());
+                Call<User> call = api.createUserWithDefault(inputFirstname.getText().toString(), inputLastname.getText().toString(), inputEmail.getText().toString(), Security.SHA1(inputPassword.getText().toString()));
 
                 call.enqueue(new Callback<User>() {
                     @Override

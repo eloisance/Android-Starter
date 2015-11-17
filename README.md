@@ -3,7 +3,7 @@
 Base to start your Android project if you need these features :
 
 * SplashScreen
-* Login and Register form 
+* Login and Register form (secure password with sha1)
 * Google authentication
 * Anonymous access
 * English and French language
@@ -23,4 +23,5 @@ Base to start your Android project if you need these features :
 ## TODO 
 
 * Add profile image
+* Add Google Analytics
 
