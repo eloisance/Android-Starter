@@ -34,6 +34,7 @@ import java.util.List;
 
 import fr.emmanuel.loisance.androidstarter.R;
 import fr.emmanuel.loisance.androidstarter.activity.LoginActivity;
+import fr.emmanuel.loisance.androidstarter.activity.UpdatePasswordActivity;
 import fr.emmanuel.loisance.androidstarter.classe.User;
 import fr.emmanuel.loisance.androidstarter.global.Constants;
 import fr.emmanuel.loisance.androidstarter.global.GlobalState;
@@ -51,6 +52,7 @@ public class AccountFragment extends Fragment implements View.OnClickListener {
     private GoogleApiClient mGoogleApiClient;
     private User user;
     private Validator mValidator;
+    ProgressBar mProgressBar;
 
     @NotEmpty(messageResId = R.string.app_input_required)
     EditText inputAccountLastname;
@@ -63,8 +65,6 @@ public class AccountFragment extends Fragment implements View.OnClickListener {
     EditText inputAccountEmail;
 
     EditText inputAccountPhone;
-
-    ProgressBar mProgressBar;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -176,6 +176,12 @@ public class AccountFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         inflater.inflate(R.menu.menu_account, menu);
+
+        if(user.getProvider().equals("google")) {
+            MenuItem itemUpdatePassword = menu.findItem(R.id.menu_account_update_password);
+            itemUpdatePassword.setEnabled(false);
+        }
+
         super.onCreateOptionsMenu(menu, inflater);
     }
 
@@ -185,7 +191,10 @@ public class AccountFragment extends Fragment implements View.OnClickListener {
 
         if(id == R.id.menu_account_save) {
             submitData(getActivity());
-        } else if(id == R.id.menu_account_delete) {
+        } else if(id == R.id.menu_account_update_password) {
+            Intent intent = new Intent(getActivity(), UpdatePasswordActivity.class);
+            startActivity(intent);
+        } else if(id == R.id.menu_account_delete_account) {
             dialogDeleteAccount();
         }
 

@@ -8,8 +8,14 @@
         android:icon="@drawable/ic_done_24dp" />
 
     <item
-        android:id="@+id/menu_account_delete"
-        android:title="@string/account_menu_delete"
+        android:id="@+id/menu_account_update_password"
+        android:title="@string/account_menu_update_password"
         app:showAsAction="never"
         android:orderInCategory="2" />
+
+    <item
+        android:id="@+id/menu_account_delete_account"
+        android:title="@string/account_menu_delete_account"
+        app:showAsAction="never"
+        android:orderInCategory="3" />
 </menu>

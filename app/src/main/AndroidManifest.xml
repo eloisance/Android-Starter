@@ -41,6 +41,11 @@
             android:label="@string/app_name"
             android:screenOrientation="portrait" >
         </activity>
+        <activity
+            android:name="fr.emmanuel.loisance.androidstarter.activity.UpdatePasswordActivity"
+            android:label="@string/title_activity_update_password"
+            android:screenOrientation="portrait" >
+        </activity>
 
         <meta-data
             android:name="com.google.android.gms.version"

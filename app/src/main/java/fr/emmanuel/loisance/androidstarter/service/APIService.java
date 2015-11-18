@@ -30,6 +30,10 @@ public interface APIService {
     @PUT("users/{id}")
     Call<User> updateUser(@Path("id") int id, @Field("firstname") String firstname, @Field("lastname") String lastname, @Field("email") String email, @Field("phone") String phone);
 
+    @FormUrlEncoded
+    @PUT("users/password/{id}")
+    Call<User> updatePasswordUser(@Path("id") int id, @Field("password") String password, @Field("new_password") String newPassword);
+
     @DELETE("users/{id}")
     Call<User> deleteUser(@Path("id") int id);
 }

@@ -10,6 +10,7 @@
     <string name="app_input_required">Ce champ est obligatoire</string>
     <string name="app_input_email_invalid">Email invalide</string>
     <string name="app_input_password_invalid">Mot de passe invalide (6 caractères minimum)</string>
+    <string name="app_input_password_confirm_invalid">Mots de passe différents</string>
     <string name="app_checkbox_terms_invalid">Vous devez accepter les conditions</string>
 
     <!-- LoginActivity -->
@@ -61,10 +62,22 @@
     <string name="account_message_error">erreur %1$s, contactez-nous</string>
     <string name="account_message_failure">connexion échouée, contactez-nous</string>
     <string name="account_btn_logout">déconnexion</string>
-    <string name="account_menu_delete">supprimer mon compte</string>
+    <string name="account_menu_update_password">modifier mon mot de passe</string>
+    <string name="account_menu_delete_account">supprimer mon compte</string>
     <string name="account_dialog_title">Suppression de compte</string>
     <string name="account_dialog_message">Souhaitez-vous vraiment supprimer votre compte ?</string>
     <string name="account_dialog_positive">oui</string>
     <string name="account_dialog_negative">non</string>
+
+    <!-- UpdatePasswordActivity -->
+    <string name="title_activity_update_password">Modifier mon mot de passe</string>
+    <string name="update_password_input_password">mot de passe</string>
+    <string name="update_password_input_new_password">nouveau mot de passe</string>
+    <string name="update_password_input_new_password_confirm">confirmation</string>
+    <string name="update_password_message_update_ok">mot de passe mis à jour</string>
+    <string name="update_password_message_update_wrong">mauvais mot de passe</string>
+    <string name="update_password_message_error">erreur %1$s, contactez-nous</string>
+    <string name="update_password_message_failure">connexion échouée, contactez-nous</string>
+    <string name="update_password_button_submit">valider</string>
 
 </resources>

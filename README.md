@@ -8,7 +8,7 @@ Base to start your Android project if you need these features :
 * Anonymous access
 * English and French language
 * Blank MainFragment with FAB
-* AccountFragment
+* AccountFragment (update user informations, update password, delete account)
 * Navigation Drawer 
 
 ![AndroidStarter](AndroidStarter.gif?raw=true)

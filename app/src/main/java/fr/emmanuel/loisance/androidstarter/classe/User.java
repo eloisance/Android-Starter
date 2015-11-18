@@ -12,6 +12,7 @@ public class User {
     private String firstname;
     private String lastname;
     private String email;
+    private String password;
     private String phone;
     private String provider;
     @SerializedName("registration_date")
@@ -59,6 +60,14 @@ public class User {
         this.email = email;
     }
 
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
     public String getPhone() {
         return phone;
     }
@@ -87,17 +96,4 @@ public class User {
         return this.firstname + " " + this.lastname;
     }
 
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", idGoogle='" + idGoogle + '\'' +
-                ", firstname='" + firstname + '\'' +
-                ", lastname='" + lastname + '\'' +
-                ", email='" + email + '\'' +
-                ", phone='" + phone + '\'' +
-                ", provider='" + provider + '\'' +
-                ", registrationDate=" + registrationDate +
-                '}';
-    }
 }
