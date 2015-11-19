@@ -36,6 +36,7 @@ import fr.emmanuel.loisance.androidstarter.classe.User;
 import fr.emmanuel.loisance.androidstarter.global.Constants;
 import fr.emmanuel.loisance.androidstarter.global.GlobalState;
 import fr.emmanuel.loisance.androidstarter.service.APIService;
+import fr.emmanuel.loisance.androidstarter.util.Security;
 import retrofit.Call;
 import retrofit.Callback;
 import retrofit.GsonConverterFactory;
@@ -278,7 +279,7 @@ public class LoginActivity extends Activity implements View.OnClickListener, Goo
                 .build();
 
         APIService api = retrofit.create(APIService.class);
-        Call<User> call = api.getUserFromDefault(email, password);
+        Call<User> call = api.getUserFromDefault(email, Security.SHA1(password));
 
         call.enqueue(new Callback<User>() {
             @Override
