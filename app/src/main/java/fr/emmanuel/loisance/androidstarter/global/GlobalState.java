@@ -6,8 +6,13 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
 import fr.emmanuel.loisance.androidstarter.R;
 import fr.emmanuel.loisance.androidstarter.classe.User;
+import retrofit.GsonConverterFactory;
+import retrofit.Retrofit;
 
 public class GlobalState extends Application {
 
@@ -32,6 +37,21 @@ public class GlobalState extends Application {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    /**
+     * Init retrofit
+     * @return retrofit
+     */
+    public Retrofit getRetrofit() {
+        Gson gson = new GsonBuilder()
+                .setDateFormat("yyyy-MM-dd")
+                .create();
+
+        return new Retrofit.Builder()
+                .baseUrl(Constants.URL_API)
+                .addConverterFactory(GsonConverterFactory.create(gson))
+                .build();
     }
 
     /**

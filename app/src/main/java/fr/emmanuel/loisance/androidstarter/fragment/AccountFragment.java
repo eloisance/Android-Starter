@@ -23,8 +23,6 @@ import android.widget.Toast;
 
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.plus.Plus;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.mobsandgeeks.saripaar.ValidationError;
 import com.mobsandgeeks.saripaar.Validator;
 import com.mobsandgeeks.saripaar.annotation.Email;
@@ -36,12 +34,10 @@ import fr.emmanuel.loisance.androidstarter.R;
 import fr.emmanuel.loisance.androidstarter.activity.LoginActivity;
 import fr.emmanuel.loisance.androidstarter.activity.UpdatePasswordActivity;
 import fr.emmanuel.loisance.androidstarter.classe.User;
-import fr.emmanuel.loisance.androidstarter.global.Constants;
 import fr.emmanuel.loisance.androidstarter.global.GlobalState;
 import fr.emmanuel.loisance.androidstarter.service.APIService;
 import retrofit.Call;
 import retrofit.Callback;
-import retrofit.GsonConverterFactory;
 import retrofit.Response;
 import retrofit.Retrofit;
 
@@ -52,7 +48,7 @@ public class AccountFragment extends Fragment implements View.OnClickListener {
     private GoogleApiClient mGoogleApiClient;
     private User user;
     private Validator mValidator;
-    ProgressBar mProgressBar;
+    private ProgressBar mProgressBar;
 
     @NotEmpty(messageResId = R.string.app_input_required)
     EditText inputAccountLastname;
@@ -86,16 +82,7 @@ public class AccountFragment extends Fragment implements View.OnClickListener {
                 if (!gs.isNetworkAvailable(getActivity())) return;
                 mProgressBar.setVisibility(View.VISIBLE);
 
-                Gson gson = new GsonBuilder()
-                        .setDateFormat("yyyy-MM-dd")
-                        .create();
-
-                Retrofit retrofit = new Retrofit.Builder()
-                        .baseUrl(Constants.URL_API)
-                        .addConverterFactory(GsonConverterFactory.create(gson))
-                        .build();
-
-                APIService api = retrofit.create(APIService.class);
+                APIService api = gs.getRetrofit().create(APIService.class);
                 Call<User> call = api.updateUser(user.getId(), inputAccountFirstname.getText().toString(), inputAccountLastname.getText().toString(), inputAccountEmail.getText().toString(), inputAccountPhone.getText().toString());
 
                 call.enqueue(new Callback<User>() {
@@ -178,8 +165,7 @@ public class AccountFragment extends Fragment implements View.OnClickListener {
         inflater.inflate(R.menu.menu_account, menu);
 
         if(user.getProvider().equals("google")) {
-            MenuItem itemUpdatePassword = menu.findItem(R.id.menu_account_update_password);
-            itemUpdatePassword.setEnabled(false);
+            menu.findItem(R.id.menu_account_update_password).setEnabled(false);
         }
 
         super.onCreateOptionsMenu(menu, inflater);
@@ -271,16 +257,7 @@ public class AccountFragment extends Fragment implements View.OnClickListener {
         if (!gs.isNetworkAvailable(getActivity())) return;
         mProgressBar.setVisibility(View.VISIBLE);
 
-        Gson gson = new GsonBuilder()
-                .setDateFormat("yyyy-MM-dd")
-                .create();
-
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(Constants.URL_API)
-                .addConverterFactory(GsonConverterFactory.create(gson))
-                .build();
-
-        APIService api = retrofit.create(APIService.class);
+        APIService api = gs.getRetrofit().create(APIService.class);
         Call<User> call = api.deleteUser(user.getId());
 
         call.enqueue(new Callback<User>() {

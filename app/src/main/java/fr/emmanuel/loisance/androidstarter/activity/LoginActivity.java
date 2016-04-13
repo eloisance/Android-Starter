@@ -20,8 +20,6 @@ import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.plus.Plus;
 import com.google.android.gms.plus.model.people.Person;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.mobsandgeeks.saripaar.ValidationError;
 import com.mobsandgeeks.saripaar.Validator;
 import com.mobsandgeeks.saripaar.annotation.Email;
@@ -39,7 +37,6 @@ import fr.emmanuel.loisance.androidstarter.service.APIService;
 import fr.emmanuel.loisance.androidstarter.util.Security;
 import retrofit.Call;
 import retrofit.Callback;
-import retrofit.GsonConverterFactory;
 import retrofit.Response;
 import retrofit.Retrofit;
 
@@ -101,7 +98,9 @@ public class LoginActivity extends Activity implements View.OnClickListener, Goo
         mBtnConnection.setOnClickListener(this);
 
         inputEmail = (EditText) findViewById(R.id.login_input_email);
+        inputEmail.setText("azerty@azerty.fr");
         inputPassword = (EditText) findViewById(R.id.login_input_password);
+        inputPassword.setText("azerty");
 
         txtRegister = (TextView) findViewById(R.id.login_txt_register);
         txtRegister.setOnClickListener(this);
@@ -269,16 +268,7 @@ public class LoginActivity extends Activity implements View.OnClickListener, Goo
         if (!gs.isNetworkAvailable(this)) return;
         mLoader.setVisibility(View.VISIBLE);
 
-        Gson gson = new GsonBuilder()
-                .setDateFormat("yyyy-MM-dd")
-                .create();
-
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(Constants.URL_API)
-                .addConverterFactory(GsonConverterFactory.create(gson))
-                .build();
-
-        APIService api = retrofit.create(APIService.class);
+        APIService api = gs.getRetrofit().create(APIService.class);
         Call<User> call = api.getUserFromDefault(email, Security.SHA1(password));
 
         call.enqueue(new Callback<User>() {
@@ -324,25 +314,17 @@ public class LoginActivity extends Activity implements View.OnClickListener, Goo
 
         final String idGoogle = Plus.PeopleApi.getCurrentPerson(mGoogleApiClient).getId();
 
-        Gson gson = new GsonBuilder()
-                .setDateFormat("yyyy-MM-dd")
-                .create();
-
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(Constants.URL_API)
-                .addConverterFactory(GsonConverterFactory.create(gson))
-                .build();
-
-        APIService api = retrofit.create(APIService.class);
+        APIService api = gs.getRetrofit().create(APIService.class);
         Call<User> call = api.getUserFromGoogle(idGoogle);
 
         call.enqueue(new Callback<User>() {
             @Override
-            public void onResponse(Response<User> response, Retrofit retrofit) {
+            public void onResponse(final Response<User> response, Retrofit retrofit) {
                 switch (response.code()) {
                     case 200:
                         Log.d(TAG, "API User From Google Success");
                         Log.d(TAG, "User: " + response.body().toString());
+                        // set user
                         GlobalState gs = (GlobalState) getApplicationContext();
                         gs.setIsConnected(true);
                         gs.setUser(response.body());
@@ -385,23 +367,15 @@ public class LoginActivity extends Activity implements View.OnClickListener, Goo
         String emailGoogle = Plus.AccountApi.getAccountName(mGoogleApiClient);
         Person me = Plus.PeopleApi.getCurrentPerson(mGoogleApiClient);
 
-        Gson gson = new GsonBuilder()
-                .setDateFormat("yyyy-MM-dd")
-                .create();
-
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(Constants.URL_API)
-                .addConverterFactory(GsonConverterFactory.create(gson))
-                .build();
-
-        APIService api = retrofit.create(APIService.class);
+        APIService api = gs.getRetrofit().create(APIService.class);
         Call<User> user = api.createUserWithGoogle(idGoogle, me.getName().getGivenName(), me.getName().getFamilyName(), emailGoogle);
         user.enqueue(new Callback<User>() {
             @Override
-            public void onResponse(Response<User> response, Retrofit retrofit) {
+            public void onResponse(final Response<User> response, Retrofit retrofit) {
                 if (response.isSuccess()) {
                     Log.d(TAG, "API Create User From Google Success : " + response.code());
                     Log.d(TAG, "New User from Google : " + response.body().toString());
+                    // set user
                     GlobalState gs = (GlobalState) getApplicationContext();
                     gs.setIsConnected(true);
                     gs.setUser(response.body());
@@ -426,7 +400,6 @@ public class LoginActivity extends Activity implements View.OnClickListener, Goo
             }
         });
     }
-
 
     /**
      * Open alert dialog before leave application to ask

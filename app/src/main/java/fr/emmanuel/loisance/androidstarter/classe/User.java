@@ -18,7 +18,17 @@ public class User {
     @SerializedName("registration_date")
     private Date registrationDate;
 
-    public User() { }
+    public User(int id, String idGoogle, String firstname, String lastname, String email, String password, String provider, String phone, Date registrationDate) {
+        setId(id);
+        setIdGoogle(idGoogle);
+        setFirstname(firstname);
+        setLastname(lastname);
+        setEmail(email);
+        setPassword(password);
+        setProvider(provider);
+        setPhone(phone);
+        setRegistrationDate(registrationDate);
+    }
 
     public int getId() {
         return id;

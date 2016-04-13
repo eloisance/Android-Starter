@@ -14,8 +14,6 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.mobsandgeeks.saripaar.ValidationError;
 import com.mobsandgeeks.saripaar.Validator;
 import com.mobsandgeeks.saripaar.annotation.ConfirmPassword;
@@ -27,13 +25,11 @@ import java.util.List;
 
 import fr.emmanuel.loisance.androidstarter.R;
 import fr.emmanuel.loisance.androidstarter.classe.User;
-import fr.emmanuel.loisance.androidstarter.global.Constants;
 import fr.emmanuel.loisance.androidstarter.global.GlobalState;
 import fr.emmanuel.loisance.androidstarter.service.APIService;
 import fr.emmanuel.loisance.androidstarter.util.Security;
 import retrofit.Call;
 import retrofit.Callback;
-import retrofit.GsonConverterFactory;
 import retrofit.Response;
 import retrofit.Retrofit;
 
@@ -88,16 +84,7 @@ public class UpdatePasswordActivity extends AppCompatActivity implements View.On
                 if (!gs.isNetworkAvailable(getApplicationContext())) return;
                 mProgressBar.setVisibility(View.VISIBLE);
 
-                Gson gson = new GsonBuilder()
-                        .setDateFormat("yyyy-MM-dd")
-                        .create();
-
-                Retrofit retrofit = new Retrofit.Builder()
-                        .baseUrl(Constants.URL_API)
-                        .addConverterFactory(GsonConverterFactory.create(gson))
-                        .build();
-
-                APIService api = retrofit.create(APIService.class);
+                APIService api = gs.getRetrofit().create(APIService.class);
                 Call<User> call = api.updatePasswordUser(user.getId(), Security.SHA1(inputPassword.getText().toString()), Security.SHA1(inputNewPassword.getText().toString()));
 
                 call.enqueue(new Callback<User>() {

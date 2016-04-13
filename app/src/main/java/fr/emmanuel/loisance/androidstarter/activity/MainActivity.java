@@ -8,6 +8,7 @@ import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AlertDialog;
@@ -17,6 +18,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+
+import com.squareup.picasso.Picasso;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 import fr.emmanuel.loisance.androidstarter.R;
@@ -52,10 +55,12 @@ public class MainActivity extends AppCompatActivity {
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(mToolbar);
 
+        mNavigationView = (NavigationView) findViewById(R.id.navigation_view);
+        final View header = mNavigationView.inflateHeaderView(R.layout.header);
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mActionBarDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, mToolbar, R.string.openDrawer, R.string.closeDrawer) {
             @Override
-            public void onDrawerOpened(View drawerView) { super.onDrawerOpened(drawerView); }
+            public void onDrawerOpened(View drawerView) {super.onDrawerOpened(drawerView);}
             @Override
             public void onDrawerClosed(View drawerView) {
                 super.onDrawerClosed(drawerView);
@@ -64,11 +69,6 @@ public class MainActivity extends AppCompatActivity {
         mDrawerLayout.setDrawerListener(mActionBarDrawerToggle);
         mActionBarDrawerToggle.syncState();
 
-        mNavigationView = (NavigationView) findViewById(R.id.navigation_view);
-        View header = mNavigationView.inflateHeaderView(R.layout.header);
-        TextView username = (TextView) header.findViewById(R.id.username);
-        TextView email = (TextView) header.findViewById(R.id.email);
-        CircleImageView profileImage = (CircleImageView) header.findViewById(R.id.profile_image);
         mNavigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(MenuItem menuItem) {
@@ -114,25 +114,16 @@ public class MainActivity extends AppCompatActivity {
         mFloatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(gs.getIsConnected()) {
+                if (gs.getIsConnected()) {
                     // do something
-                }
-                else {
+                } else {
                     makeSnackbarNotConnected(coordinatorLayoutView);
                 }
             }
         });
 
-        // Update user informations in nav drawer
-        if(gs.getIsConnected()) {
-            username.setText(this.user.getDisplayName());
-            email.setText(user.getEmail());
-            //profileImage.setImageBitmap(gs.getProfileImage());
-        } else {
-            username.setText(getResources().getString(R.string.menu_header_username));
-            email.setText(getResources().getString(R.string.menu_header_email));
-            profileImage.setImageResource(R.drawable.ic_account_white_24dp);
-        }
+        // Update user information in header navigation drawer
+        displayContentHeaderNavigationDrawer(header);
 
         // Default: AccountFragment
         mPreviousItem = mNavigationView.getMenu().getItem(1);
@@ -151,16 +142,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         return super.onOptionsItemSelected(item);
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
     }
 
     @Override
@@ -205,6 +186,24 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
+     * Display all content of header navigation drawer
+     * @param header View contain TextViiew and Image
+     */
+    private void displayContentHeaderNavigationDrawer(View header) {
+        TextView username = (TextView) header.findViewById(R.id.username);
+        TextView email = (TextView) header.findViewById(R.id.email);
+        CircleImageView profileImage = (CircleImageView) header.findViewById(R.id.profile_image);
+        Picasso.with(this).load(R.drawable.ic_account_white_24dp).into(profileImage);
+        if(gs.getIsConnected()) {
+            username.setText(gs.getUser().getDisplayName());
+            email.setText(gs.getUser().getEmail());
+        } else {
+            username.setText(getResources().getString(R.string.menu_header_username));
+            email.setText(getResources().getString(R.string.menu_header_email));
+        }
+    }
+
+    /**
      * Display SnackBar
      * @param coordinatorLayoutView Coordinator layout of snackbar
      */
@@ -218,7 +217,7 @@ public class MainActivity extends AppCompatActivity {
                         finish();
                     }
                 })
-                .setActionTextColor(getResources().getColor(R.color.ColorPrimary))
+                .setActionTextColor(ContextCompat.getColor(this, R.color.ColorPrimary))
                 .show();
     }
 

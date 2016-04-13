@@ -14,8 +14,6 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.mobsandgeeks.saripaar.ValidationError;
 import com.mobsandgeeks.saripaar.Validator;
 import com.mobsandgeeks.saripaar.annotation.Checked;
@@ -34,7 +32,6 @@ import fr.emmanuel.loisance.androidstarter.service.APIService;
 import fr.emmanuel.loisance.androidstarter.util.Security;
 import retrofit.Call;
 import retrofit.Callback;
-import retrofit.GsonConverterFactory;
 import retrofit.Response;
 import retrofit.Retrofit;
 
@@ -114,16 +111,7 @@ public class RegisterActivity extends Activity {
                 if(!gs.isNetworkAvailable(RegisterActivity.this)) return;
                 mLoader.setVisibility(View.VISIBLE);
 
-                Gson gson = new GsonBuilder()
-                        .setDateFormat("yyyy-MM-dd")
-                        .create();
-
-                Retrofit retrofit = new Retrofit.Builder()
-                        .baseUrl(Constants.URL_API)
-                        .addConverterFactory(GsonConverterFactory.create(gson))
-                        .build();
-
-                APIService api = retrofit.create(APIService.class);
+                APIService api = gs.getRetrofit().create(APIService.class);
                 Call<User> call = api.createUserWithDefault(inputFirstname.getText().toString(), inputLastname.getText().toString(), inputEmail.getText().toString(), Security.SHA1(inputPassword.getText().toString()));
 
                 call.enqueue(new Callback<User>() {

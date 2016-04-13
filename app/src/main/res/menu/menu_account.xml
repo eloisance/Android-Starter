@@ -11,11 +11,11 @@
         android:id="@+id/menu_account_update_password"
         android:title="@string/account_menu_update_password"
         app:showAsAction="never"
-        android:orderInCategory="2" />
+        android:orderInCategory="3" />
 
     <item
         android:id="@+id/menu_account_delete_account"
         android:title="@string/account_menu_delete_account"
         app:showAsAction="never"
-        android:orderInCategory="3" />
+        android:orderInCategory="4" />
 </menu>
