@@ -19,9 +19,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
-import com.squareup.picasso.Picasso;
-
-import de.hdodenhof.circleimageview.CircleImageView;
 import fr.emmanuel.loisance.androidstarter.R;
 import fr.emmanuel.loisance.androidstarter.classe.User;
 import fr.emmanuel.loisance.androidstarter.fragment.AccountFragment;
@@ -192,8 +189,6 @@ public class MainActivity extends AppCompatActivity {
     private void displayContentHeaderNavigationDrawer(View header) {
         TextView username = (TextView) header.findViewById(R.id.username);
         TextView email = (TextView) header.findViewById(R.id.email);
-        CircleImageView profileImage = (CircleImageView) header.findViewById(R.id.profile_image);
-        Picasso.with(this).load(R.drawable.ic_account_white_24dp).into(profileImage);
         if(gs.getIsConnected()) {
             username.setText(gs.getUser().getDisplayName());
             email.setText(gs.getUser().getEmail());

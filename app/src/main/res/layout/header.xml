@@ -10,14 +10,14 @@
         android:id="@+id/profile_image"
         android:layout_width="76dp"
         android:layout_height="76dp"
-        app:border_width="2dp"
+        app:border_width="1dp"
         app:border_color="@color/White"
-        android:src="@drawable/ic_account_white_24dp"
+        android:src="@drawable/avatar_male"
         android:layout_marginLeft="24dp"
+        android:layout_marginStart="24dp"
         android:layout_centerVertical="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginStart="24dp"/>
+        android:layout_alignParentStart="true" />
 
     <TextView
         android:layout_width="wrap_content"

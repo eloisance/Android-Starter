@@ -25,3 +25,7 @@ Base to start your Android project if you need these features :
 * Add profile image
 * Add Google Analytics
 
+
+## License
+
+- Avatar icons from [https://www.iconfinder.com/Naf_Naf](https://www.iconfinder.com/Naf_Naf)
