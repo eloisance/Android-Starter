@@ -296,7 +296,7 @@ public class LoginActivity extends Activity implements View.OnClickListener, Goo
 
             @Override
             public void onFailure(Throwable t) {
-                Log.d(TAG, "connection default fail: " + t.getMessage() + t.getCause().getMessage());
+                Log.d(TAG, "connection default fail: " + t.getMessage() + " - cause : " + t.getCause());
                 Toast.makeText(getApplicationContext(), "Connection failed", Toast.LENGTH_LONG).show();
                 mLoader.setVisibility(View.INVISIBLE);
             }
